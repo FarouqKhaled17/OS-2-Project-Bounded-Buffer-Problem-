@@ -79,7 +79,7 @@ class BoundedBuffer implements Buffer{
                System.out.println("ERROR in try(): " + e);
             }
            Date date= new Date();
-           System.out.println("Thread: "+Thread.currentThread().getName()  +" in critical section "+date);
+           System.out.println("Thread: "+Thread.currentThread().getName()  +" in the critical section "+date);
       	
       // remove an item from the buffer
          --count;
@@ -89,7 +89,7 @@ class BoundedBuffer implements Buffer{
     System.out.println("Consumer consumed  " + item );
 
          mutex.release(); //mutual exclusion
-           System.out.println("Thread: "+Thread.currentThread().getName()  +" left critical section");
+           System.out.println("Thread: "+Thread.currentThread().getName()  +" left the critical section");
 
            empty.release(); //keep track of number of empty elements (value++)
            System.out.println( Thread.currentThread().getName()  +"turn "+ item+"-> "+count);
