@@ -1,12 +1,10 @@
 
 package pc;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.util.Date;
 import java.util.concurrent.Semaphore;
  
 class BoundedBuffer implements Buffer{ 
-    int item;
+    int buff;
       private static final int BUFFER_SIZE = 3;
       private int count;
       private int in;
@@ -17,7 +15,7 @@ class BoundedBuffer implements Buffer{
       private Semaphore full;
        
        public BoundedBuffer(){
-         item=0;
+         buff =0;
          count = 0;
          in = 0;
          out = 0;
@@ -41,10 +39,10 @@ class BoundedBuffer implements Buffer{
 
 
          ++count;
-         buffer[in] = item;
+         buffer[in] = buff;
          in = (in + 1) % BUFFER_SIZE;
 
-           item++;
+           buff++;
       
        
          mutex.release();
@@ -84,7 +82,7 @@ class BoundedBuffer implements Buffer{
     System.out.println("Consumer consumed  " + item );
 
          mutex.release();
-           System.out.println("Thread: "+Thread.currentThread().getName()  +" left the critical section");
+           System.out.println("Thread: "+Thread.currentThread().getName()  +" left the critical section"+count);
 
            empty.release();
 
