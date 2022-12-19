@@ -30,14 +30,14 @@ class BoundedBuffer implements Buffer{
        public void insert() {
 
          try{
-            mutex.acquire();
             empty.acquire();
+            mutex.acquire();
          }
              catch (InterruptedException e) { 
-               System.out.println("ERROR in insert(): " + e);
+               System.out.println("Error in insert(): " + e);
             }
            Date date= new Date();
-           System.out.println("Thread: "+Thread.currentThread().getName()  +" in critical section "+date);
+           System.out.println("Thread: "+Thread.currentThread().getName()  +" entered critical section "+date);
 
 
          ++count;
@@ -65,8 +65,8 @@ class BoundedBuffer implements Buffer{
          Object item=null;
 
        try{
-            mutex.acquire();
             full.acquire();
+            mutex.acquire();
 
 
          }
